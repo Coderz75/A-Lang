@@ -69,8 +69,11 @@ int main(int argc, char** argv)
                 ifstream z(data[i + 1]);
                 str y;
                 str Final;
+                int i = 0;
                 while (getline (z, y)) {
-                    Final += y + "\n";
+                    Final += y;
+                    if(i > 1) Final += "\n";
+                    i +=1;
                 }
                 data[i] = Final;
                 z.close();
