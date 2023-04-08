@@ -15,7 +15,8 @@ say "Welcome to alang!"
 - [Numbers](#num)
 - [Concatination](#conc)
 - [Cross-Compatibility](#cross)
-
+- [Running it](#run
+)
 <h2 id = "feature">Features:</h2>
 
 - Effecient - Asians must be the first to finish everything 
@@ -98,3 +99,19 @@ py: print('Hi'); print('Bye')
 
 
 I think that is it for the documentation. Good luck coding!
+
+<h2 id = "run">Running the file</h2>
+
+The executables are located within the [exec](./exec) folder. The best way is to use git
+
+```bash
+git clone https://github.com/Coderz75/A-Lang.git
+```
+
+Then add the exec directory to PATH.
+
+Then you should be able to use use `asian` to run the file
+
+```bash
+asian hello.a
+```
