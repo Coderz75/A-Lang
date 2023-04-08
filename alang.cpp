@@ -1,3 +1,25 @@
+/*
+    Asian Language- A coding language for Asians.
+    Copyright (C) 2023  Nuaym Syed
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    
+    A-Lang  Copyright (C) 2023  Nuaym Syed
+    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
+    This is free software, and you are welcome to redistribute it
+    under certain conditions; type `show c' for details.
+*/
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -37,6 +59,7 @@ int main(int argc, char** argv)
     2 = In if, do not run*/
     for(auto line: file){
         vector<string> data;
+        if (line.rfind("py:", 0) != 0 or line.rfind("#", 0) != 0){
         string prev = "";
         bool instring = false;
         for(int i = 0; i < line.size(); i++){
@@ -59,7 +82,6 @@ int main(int argc, char** argv)
         }
         data.push_back(prev);
         if (instring) fail();
-        if (data[0] != "py:"){
         if (inif != 2){
         // VALUES/ inputs
         for(int i = data.size() - 1; i >=0; i--){
@@ -143,6 +165,9 @@ int main(int argc, char** argv)
             }
             if (x == "endif"){
                 inif = 0;
+            }
+            if (x == "exec"){
+                system(data[i + 1].c_str());
             }
             if (x == "exit"){
                 fail("YOUR PROGRAM IS SOO BAD IT DECIDED TO FAIL ITSELF",stoi(data[i+1]));
