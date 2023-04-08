@@ -28,9 +28,6 @@
 #include <algorithm>
 using namespace std;
 
-#define and &&
-#define or ||
-#define not !
 
 vector<string> file;
 
