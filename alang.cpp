@@ -13,9 +13,9 @@ using namespace std;
 
 vector<str> file;
 
-void fail(str e = ""){
-    cerr << "\n" << e << "\n" << "FAILURE";
-    exit(1);
+void fail(str e = "", int code = 1){
+    cerr << "\n\033[31m" << e << "\n" << "FAILURE\033[0m";
+    exit(code);
 }
 
 int main(int argc, char** argv)
@@ -31,8 +31,11 @@ int main(int argc, char** argv)
     myfile.close();
     
     
-    int speek_num = 0;
-    int req_num = 0;
+    int inif = 0;
+    /*Inif Values:
+    0 = Not in if
+    1 = In if, run
+    2 = In if, do not run*/
     for(auto line: file){
         vector<str> data;
         str prev = "";
@@ -54,15 +57,14 @@ int main(int argc, char** argv)
         }
         data.push_back(prev);
         if (instr) fail();
-
+        if (inif != 2){
+        // VALUES/ inputs
         for(int i = data.size() - 1; i >=0; i--){
             if(data[i] == "req"){
-                if (req_num >= 10) fail("YOU ASK WAY TO MUCH CHILD");
                 cout << data[i + 1];
                 str f;
                 getline(cin,f);
                 data[i] = f;
-                req_num += 1;
                 data.erase(data.begin() + i + 1);
             }
             else if (data[i] == "read"){
@@ -81,14 +83,43 @@ int main(int argc, char** argv)
             }
         }
 
+        // ALGORITHMS
+        for(int i = data.size() - 1; i >=0; i--){
+            if(data[i] == "+"){ 
+                if (data[i - 2] == "num"){
+                    //LATER
+                }else{
+                    data[i] = data[i - 1] + data[i+1];
+                    data.erase(data.begin() + i - 1);
+                    data.erase(data.begin() + i);
+                }
+            }
+            if(data[i] == "is"){ 
+                int x;
+                if( str(data[i-1]) == str(data[i+1])){ 
+                    x = 1;
+                }else x = 0;
+                data[i] = to_string(x);
+                data.erase(data.begin() + i - 1);
+                data.erase(data.begin() + i);
+            }
+            if(data[i] == "not"){ 
+                int x;
+                if( str(data[i-1]) != str(data[i+1])){ 
+                    x = 1;
+                }else x = 0;
+                data[i] = to_string(x);
+                data.erase(data.begin() + i - 1);
+                data.erase(data.begin() + i);
+            }
+        }
+        // OUTPUTS
         for(int i = 0; i < data.size(); i++){
             str x= data[i];
             transform(x.begin(), x.end(), x.begin(), ::tolower);
-            
+
             if(x == "say"){
-                if (speek_num >= 10) fail("YOU SPEEK TO MUCH CHILD");
                 cout << data[i + 1] << "\n";
-                speek_num += 1;
                 i += 1;
             }
             if (x == "write"){
@@ -97,9 +128,32 @@ int main(int argc, char** argv)
                 i += 2;
                 z.close();
             }
+            if (x == "delete"){
+                remove( data[i + 1].c_str() );
+            }
+            if (x == "if"){
+                if (data[i + 1] == "1"){
+                    inif = 1;
+                }else{
+                    inif = 2;
+                }
+            }
+            if (x == "endif"){
+                inif = 0;
+            }
+            if (x == "exit"){
+                fail("YOUR PROGRAM IS SOO BAD IT DECIDED TO FAIL ITSELF",stoi(data[i+1]));
+            }
+        } // FOr
+        } // Inif
+
+        for(int i = 0; i < data.size(); i++){
+            if (data[i] == "endif"){
+                inif = 0;
+            }
         }
-    }
+    } // FUll loop
 
 
     return 0;
-}
+} // Int main
