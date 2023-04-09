@@ -22,7 +22,7 @@ say "Welcome to alang!"
 - Effecient - Asians must be the first to finish everything 
 - No numbers - Asians don't need a computer to do math for them
 - No imports - Asians don't need somebody's elses help to be the best
-- Nearly no compiler errors - As an Asian, we expect that your project is error free first try. Even with an error, we will run your code, and the output will be very wierd. If something is completely wrong, we will just shut the program with a: <b><h3 style = "color: red">FAIL</h3></b>
+- Nearly no compiler errors - As an Asian, we expect that your project is error free first try. Even with an error, we will run your code, and the output will be very wierd. If something is completely wrong, we will just shut the program with a: <b>FAIL</b>
 - Compatible - Our program is compatible with python, with a catch. We only do python one liners (because otherwise it would be too easy)
 - No Variables - Back in my day we had to make minecraft with NO COMPUTER MEMORY
 
@@ -52,6 +52,20 @@ req "Enter something: "
 ```
 
 Makes Sense, right?
+
+If statements are a little more complicated. Since there are no [numbers](#num) in alang, the two tokens are: `is` and `not` to compare. To end an if, you must use the `endif` token, otherwise some wierd stuff may happen
+
+```py
+if "Hello" is "Hello"
+    say "Hello"
+endif
+# Output: Hello
+
+if "Hello" not "eeee"
+    say "Hello is suprisingly not equal to eeeeee"
+endif
+#output: Hello is suprisingly not equal to eeeeee
+```
 
 <h2 id = "file">File I/O</h2>
 
