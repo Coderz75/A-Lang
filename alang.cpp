@@ -28,6 +28,11 @@
 #include <algorithm>
 using namespace std;
 
+#ifdef _MSC_VER
+#define and &&
+#define or ||
+#define not !
+#endif
 
 vector<string> file;
 
@@ -99,9 +104,9 @@ int main(int argc, char** argv)
                     if(i > 1) Final += "\n";
                     i +=1;
                 }
-                data[i] = Final;
+                data[i+ 2] = Final;
                 z.close();
-                data.erase(data.begin() + i + 1);
+                data.erase(data.begin() + i + 3);
             }
         }
 
