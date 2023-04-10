@@ -1,7 +1,10 @@
-# A-Lang
+<h1><a href = "https://coderz75.github.io/A-Lang/">A-Lang</a></h1>
 Asian Language
 
-[Website](https://coderz75.github.io/A-Lang/)
+<img src="img/logo.jpg"
+     alt="A-Lang logo"
+     style="text-align: center; width: 500px;" />
+
 
 A-lang is held underneath the [GNU General Public liscense](./LICENSE)
 
